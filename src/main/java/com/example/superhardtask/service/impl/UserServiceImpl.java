@@ -1,4 +1,4 @@
-package com.example.superhardtask.service.Impl;
+package com.example.superhardtask.service.impl;
 
 import com.example.superhardtask.dto.UserRequestDto;
 import com.example.superhardtask.dto.UserResponseDto;
@@ -24,5 +24,10 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
         User user = userMapper.toEntity(userRequestDto);
         return userMapper.toResponseDto(userRepository.saveAndFlush(user));
+    }
+
+    @Override
+    public UserResponseDto getUser(String mail) {
+        return userMapper.toResponseDto(userRepository.getUserByMail(mail));
     }
 }

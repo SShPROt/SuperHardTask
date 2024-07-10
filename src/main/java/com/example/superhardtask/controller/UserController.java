@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 @RestController
 //@RequestMapping("/user")
@@ -22,11 +21,18 @@ public class UserController {
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Создать новую задачу", description = "Создать новую задачу с указанными деталями")
-    public UserResponseDto createTask(
-            @Validated @RequestBody @Parameter(description = "Детали задачи для создания")
+    @Operation(summary = "Создать нового пользователя", description = "Создание пользователя в системе")
+    public UserResponseDto createUser(
+            @Validated @RequestBody @Parameter(description = "Данные пользователя")
             UserRequestDto userRequestDto) {
         return userService.createUser(userRequestDto);
     }
 
+    @GetMapping("/user")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Получить данные пользователя", description = "Получение данных по почте")
+    public UserResponseDto getUser(
+            @Parameter(description = "Почта пользователя", required = true) @RequestParam String mail) {
+        return userService.getUser(mail);
+    }
 }
