@@ -1,10 +1,10 @@
 package com.example.superhardtask.service.impl;
 
-import com.example.superhardtask.dto.ProductRequestDto;
-import com.example.superhardtask.dto.ProductResponseDto;
 import com.example.superhardtask.entity.Product;
 import com.example.superhardtask.mapper.ProductMapper;
 import com.example.superhardtask.repository.ProductRepository;
+import com.example.superhardtask.rest.dto.ProductRequestDto;
+import com.example.superhardtask.rest.dto.ProductResponseDto;
 import com.example.superhardtask.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
         Product product = productMapper.toEntity(productRequestDto);
-        return productMapper.toDto(productRepository.saveAndFlush(product));
+        return productMapper.toResponseDto(productRepository.saveAndFlush(product));
     }
 
     @Override
-    public ProductResponseDto getProduct(String name) {
-        return productMapper.toDto(productRepository.findByName(name));
+    public ProductResponseDto getProduct(String mail) {
+        return productMapper.toResponseDto(productRepository.findByName(mail));
     }
 }

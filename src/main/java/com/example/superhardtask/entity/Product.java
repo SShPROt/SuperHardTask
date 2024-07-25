@@ -5,20 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order", schema = "orders")
+@Table(name = "product")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
     @Id
-    @UuidGenerator
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     private UUID id;
 
@@ -28,10 +27,9 @@ public class Product {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToMany
-    @JoinTable(
-            name = "products_orders",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List <Order> orderList;
+    @Column(name = "price", nullable = false)
+    private int price;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<ProductOrder> productOrderList;
 }

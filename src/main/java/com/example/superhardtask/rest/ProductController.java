@@ -1,7 +1,7 @@
-package com.example.superhardtask.controller;
+package com.example.superhardtask.rest;
 
-import com.example.superhardtask.dto.ProductRequestDto;
-import com.example.superhardtask.dto.ProductResponseDto;
+import com.example.superhardtask.rest.dto.ProductRequestDto;
+import com.example.superhardtask.rest.dto.ProductResponseDto;
 import com.example.superhardtask.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     @PostMapping("/product")
     @ResponseStatus(HttpStatus.CREATED)

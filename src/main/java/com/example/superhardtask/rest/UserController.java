@@ -1,7 +1,7 @@
-package com.example.superhardtask.controller;
+package com.example.superhardtask.rest;
 
-import com.example.superhardtask.dto.UserRequestDto;
-import com.example.superhardtask.dto.UserResponseDto;
+import com.example.superhardtask.rest.dto.UserRequestDto;
+import com.example.superhardtask.rest.dto.UserResponseDto;
 import com.example.superhardtask.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)

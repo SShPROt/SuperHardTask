@@ -1,10 +1,10 @@
 package com.example.superhardtask.service.impl;
 
-import com.example.superhardtask.dto.UserRequestDto;
-import com.example.superhardtask.dto.UserResponseDto;
 import com.example.superhardtask.entity.User;
 import com.example.superhardtask.mapper.UserMapper;
 import com.example.superhardtask.repository.UserRepository;
+import com.example.superhardtask.rest.dto.UserRequestDto;
+import com.example.superhardtask.rest.dto.UserResponseDto;
 import com.example.superhardtask.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
