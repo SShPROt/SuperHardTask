@@ -1,4 +1,4 @@
-package com.example.superhardtask.dto;
+package com.example.superhardtask.rest.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

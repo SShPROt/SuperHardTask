@@ -6,28 +6,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "products_orders")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
-    @Column(name = "price", nullable = false)
-    private int price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductOrder> productOrderList;
+    @Column(name = "number", nullable = false)
+    private int number;
 }
